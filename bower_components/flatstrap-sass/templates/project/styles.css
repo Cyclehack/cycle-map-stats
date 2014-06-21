@@ -1,0 +1,84 @@
+body {
+  background: #34495e;
+  font-family: "Raleway", sans-serif; }
+
+h1, h2, h3, h4 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  color: #ecf0f1; }
+
+header {
+  padding: 1em 0; }
+
+.brand {
+  text-transform: uppercase;
+  font-size: 4em;
+  color: #f1c40f;
+  float: left;
+  display: inline-block; }
+  .brand .topline {
+    letter-spacing: 2px; }
+  .brand .num-3 {
+    position: relative;
+    top: -8px; }
+  .brand .hyphen {
+    position: relative;
+    top: -4px; }
+
+.strap {
+  font-weight: 200;
+  float: right;
+  display: inline-block;
+  position: relative;
+  top: 17px; }
+
+.post-cd {
+  background: rgba(52, 73, 94, 0.7);
+  opacity: 45%;
+  padding: 10px 0 10px 45px;
+  position: absolute;
+  top: 155px; }
+
+body, html {
+  height: 100%; }
+
+.info {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 5px; }
+
+.legend {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #555; }
+
+.legend i {
+  clear: both;
+  width: 16px;
+  height: 16px;
+  float: left;
+  opacity: 0.7;
+  margin-right: 8px; }
+
+div.box {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  z-index: 100;
+  padding: 1em;
+  text-align: center; }
+
+div.country {
+  font-size: 2em;
+  font-weight: bold;
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  z-index: 100;
+  padding: .2em .5em;
+  line-height: 1.1em;
+  text-align: center; }
