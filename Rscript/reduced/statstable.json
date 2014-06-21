@@ -1,0 +1,13 @@
+{
+ "Name": [ "Glasgow Kelvin P Const", "Glasgow Maryhill and Springburn P Const", "Glasgow Pollok P Const", "Glasgow Provan P Const", "Glasgow Shettleston P Const", "Glasgow Southside P Const" ],
+"NCN.total.length.km": [   10.6,    7.7,      9,      0,   11.3,    5.9 ],
+"NCN.proposed.km": [ 0, 0, 0, 0, 0, 0 ],
+"NCN.current.length.km": [   10.6,    7.7,      9,      0,   11.3,    5.9 ],
+"Numbers.of.contributors": [ 30, 18, 14, 0, 12, 23 ],
+"Length.Cyclepath.within.NCN": [    8.1,    7.6,    2.1, null,    9.5,    1.8 ],
+"Percentage.of.NCN.Cyclepath": [   76.4,   98.7,   23.3, null,   84.1,   30.5 ],
+"Total.length.of.highways": [  337.6,  404.8,  415.5,  470.3,  451.8,  310.1 ],
+"Total.cycleway.km": [   17.4,   15.3,    9.5,    0.7,   19.4,    5.2 ],
+"NCN.Vs.Highway.length": [ 0.0314, 0.01902, 0.02166,      0, 0.02501, 0.01903 ],
+"Total.MTB.only.cycleway": [      0,   5.52,      0,   2.92,      0,      0 ] 
+}
