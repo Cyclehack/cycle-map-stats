@@ -1,0 +1,14 @@
+{
+  "name": "flatstrap-sass",
+  "homepage": "https://github.com/lucatironi/flatstrap-sass",
+  "_release": "c060678379",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c0606783790a9ee501007bd3cd37119a7deeb6cb"
+  },
+  "_source": "git://github.com/lucatironi/flatstrap-sass.git",
+  "_target": "*",
+  "_originalSource": "flatstrap-sass",
+  "_direct": true
+}
