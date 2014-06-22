@@ -21,21 +21,21 @@ system("wget -O /home/tim/github/localtivate/Rscripts/localtivate.osm \"http://o
 
 
 setwd("/home/tim/R/polys")
-download.file("http://download.geofabrik.de/europe/great-britain/scotland-latest.osm.bz2",
-              "scotland-latest.osm.bz2")
+#download.file("http://download.geofabrik.de/europe/great-britain/scotland-latest.osm.bz2",
+ #             "scotland-latest.osm.bz2")
 
 
 
 
-system("bzip2 -d scotland-latest.osm.bz2")
+#system("bzip2 -d scotland-latest.osm.bz2")
+
 
 setwd("/home/tim/github/cycle-map-stats/Rscript/reduced")
-
 files  <- list.files(pattern ='\\.poly$')
 files1 <- list(files)
 number <- length(list.files(pattern ='\\.poly$'))
 
-setwd("/home/tim/github/cycle-map-stats/Rscript")
+setwd("/home/tim/github/cycle-map-stats/Rscript/reduced")
 
 stats <- lapply(files1, function(name){
   
@@ -360,7 +360,14 @@ cmaps <- lapply(NCNcyclewaymap, function(x){
   }})
 
 #Write as geojson
-writeOGR(cmaps[[1]], 'dataMap.geojson','cmaps', driver='GeoJSON')
+setwd("/home/tim/github/cycle-map-stats/Rscript/maps")
+for (i in 1:length(maps)){
+writeOGR(maps[[i]], paste(names[i],".roadncn.geojson",sep=""),'maps', driver='GeoJSON')
+}
+
+for (i in 1:length(cmaps)){
+  writeOGR(maps[[i]], paste(names[i],"notroadncn.geojson",sep=""),'maps', driver='GeoJSON')
+}
 
 
 
