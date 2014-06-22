@@ -2,10 +2,10 @@ import requests, json
 from flask import Flask
 app = Flask(__name__)
 
-@app.route("/api/politician/")
-def hello():
+@app.route("/api/politician/<string:postcode>")
+def get_politician(postcode):
 	api_key = 'GyHsCnCyb9szFm2q9MBZTA2j'
-	postcode = "eh91qw"
+	#postcode = "eh91qw"
 	r = requests.get('http://mapit.mysociety.org/postcode/' + postcode)
 	location = r.json()
 	response = {}
