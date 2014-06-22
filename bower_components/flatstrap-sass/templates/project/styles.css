@@ -39,6 +39,15 @@ header {
   position: absolute;
   top: 155px; }
 
+.legend.leaflet-control {
+  display: none !important; }
+
+.lower-data {
+  background: #ecf0f1; }
+
+#dougnut {
+  background: rgba(52, 73, 94, 0.7); }
+
 body, html {
   height: 100%; }
 

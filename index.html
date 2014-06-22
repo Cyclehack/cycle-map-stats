@@ -13,6 +13,8 @@
         var app = angular.module("demoapp", ["leaflet-directive"]);
         app.controller('DemoController', [ "$scope", "$http", function($scope, $http) {
 
+
+
             $scope.$on("leafletDirectiveMap.geojsonMouseover", function(ev, leafletEvent) {
                 countryMouseover(leafletEvent);
             });
@@ -21,9 +23,9 @@
                 countryClick(featureSelected, leafletEvent);
             });
 
-            var continentProperties= {
+            var constituencyProperties= {
                     "009": {
-                            name: 'Oceania',
+                            name: '',
                             colors: [ '#CC0066', '#993366', '#990066', '#CC3399', '#CC6699' ]
                     },
                     "019": {
@@ -46,9 +48,9 @@
 
             angular.extend($scope, {
                 center: {
-                    lat: 56.7015,
-                    lng: -3.5211,
-                    zoom: 5
+                    lat: 55.877047,
+                    lng: -4.257436,
+                    zoom: 12
                 },
                 legend: {
                     colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', '#FFCC00' ],
@@ -63,17 +65,17 @@
             // Get a country paint color from the continents array of colors
             function getColor(country) {
                 if (!country || !country["region-code"]) {
-                    return "#FFF";
+                    return "#f1c40f";
                 }
 
                 var colors = continentProperties[country["region-code"]].colors;
-                var index = country["alpha-3"].charCodeAt(0) % colors.length ;
+                var index = county["constituency"].charCodeAt(0) % colors.length ;
                 return colors[index];
             }
 
             function style(feature) {
                 return {
-                    fillColor: getColor($scope.countries[feature.id]),
+                    fillColor: getColor($scope.counties[feature.id]),
                     weight: 2,
                     opacity: 1,
                     color: 'white',
@@ -83,7 +85,7 @@
             }
 
             // Mouse over function, called from the Leaflet Map Events
-            function countryMouseover(leafletEvent) {
+            function countyMouseover(leafletEvent) {
                 var layer = leafletEvent.target;
                 layer.setStyle({
                     weight: 2,
@@ -94,17 +96,17 @@
             }
 
             // Get the countries data from a JSON
-            $http.get("angular-leaflet-directive/examples/json/all.json").success(function(data, status) {
+            $http.get("all.json").success(function(data, status) {
 
-                // Put the countries on an associative array
-                // $scope.countries = {};
-                // for (var i=0; i< data.length; i++) {
-                //     var country = data[i];
-                //     $scope.countries[country['alpha-3']] = country;
-                // }
+               // Put the countries on an associative array
+                $scope.counties = {};
+                for (var i=0; i< data.length; i++) {
+                    var country = data[i];
+                    $scope.counties[county['constituency']] = county;
+                }
 
-                // Get the countries geojson data from a JSON
-                $http.get("angular-leaflet-directive/examples/json/countries.geo.json").success(function(data, status) {
+                // Get the counties geojson data from a JSON
+                $http.get("location.geo.json").success(function(data, status) {
                     angular.extend($scope, {
                         geojson: {
                             data: data,
@@ -135,26 +137,185 @@
         }
 </style>
 
-    <div class="info country f32">
-        <div ng-show="geojson.selected" class="flag" ng-class="countries[geojson.selected.id]['alpha-2']|lowercase"></div>
-        {{ geojson.selected.properties.name || 'No country'}}
-    </div>
-    <div class="info box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
+    
+
     <leaflet center="center" events="events" legend="legend" geojson="geojson"></leaflet>
     
     <div class="container">
         <div class="row">
             <div class="post-cd offset8 span4">
-                <form action="post" class="code">
+                <form action=":5000/api/politician/" method="post" class="code">
                 <h3>Enter your postcode.</h3>
                     <input class="input-medium search-query" name="postcode" placeholder="Enter Your Postcode" type="text">
-                    <button class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </div>
         </div>
     </div>
+<div class="container lower-data">
+    <div class="row">
+        
+                    <div class="span6">
+
+                    <table class="table">
+<thead>
+        <tr>
+                      <th class="header">Name</th>
+                      <th class="header">NCN total length km</th>
+                      <th class="header">NCN proposed km</th>
+                      <th class="header">NCN current length km</th>
+                      <th class="header">Number of OSM Contributors</th>
+                      <th class="header">Length Cyclepath within NCN km</th>
+                      <th class="header">Percentage of NCN Cyclepath</th>
+                      <th class="header">Total Highway (roads and paths)</th>
+                      <th class="header">Total cycleway (in or out of NCN network)</th>
+                      <th class="header">Current NCN Vs total highway length</th>
+                      <th class="header">Total MTB only cycleway</th>
+                  </tr>
+      </thead>
+      <tbody>
+<tr>
+                      <td>Glasgow Maryhill and Springburn P Const</td>
+                      <td>7.7</td>
+                      <td>0</td>
+                      <td>7.7</td>
+                      <td>2</td>
+                      <td>7.6</td>
+                      <td>98.7</td>
+                      <td>404.8</td>
+                      <td>15.3</td>
+                      <td>0.01902</td>
+                      <td>5.52</td>
+                  </tr>
+                  </tbody>
+                  </table>
+
+
+        </div>
+        <div class="span6">
+            
+                                <div id="doughnut"
+                      style="width: 500px; height: 500px;">
+                    </div>
+                     <div><span>Data: Kelvin &#8226; Chart ID: <a href="Chart_doughnut.html">doughnut</a> &#8226; <a href="https://github.com/mages/googleVis">googleVis-0.5.2</a></span><br /> 
+                    <!-- htmlFooter -->
+                    <span> 
+                      R version 3.1.0 (2014-04-10) 
+                      &#8226; <a href="https://developers.google.com/terms/">Google Terms of Use</a> &#8226; <a href="https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart">Documentation and Data Policy</a>
+                    </span></div>
+
+                    </div>
+    </div> <!-- /row -->
+</div>
+
+
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDatadoughnut () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+ "highway",
+404.8 
+],
+[
+ "cycleway",
+15.3 
+] 
+];
+data.addColumn('string','path.type');
+data.addColumn('number','length.km');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartdoughnut() {
+var data = gvisDatadoughnut();
+var options = {};
+options["allowHtml"] = true;
+options["width"] =    500;
+options["height"] =    500;
+options["title"] = "Total length of highways vs cycleway";
+options["legend"] = "none";
+options["colors"] = ['black','green',];
+options["pieSliceText"] = "label";
+options["pieHole"] =    0.5;
+
+
+    var chart = new google.visualization.PieChart(
+    document.getElementById('doughnut')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "corechart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartdoughnut);
+})();
+function displayChartdoughnut() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+ 
+<!-- jsChart -->  
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartdoughnut"></script>
+ 
+<!-- divChart -->
+  
+<div id="doughnut"
+  style="width: 500px; height: 500px;">
+</div>
+ <div><span>Data: Kelvin &#8226; Chart ID: <a href="Chart_doughnut.html">doughnut</a> &#8226; <a href="https://github.com/mages/googleVis">googleVis-0.5.2</a></span><br /> 
+<!-- htmlFooter -->
+<span> 
+  R version 3.1.0 (2014-04-10) 
+  &#8226; <a href="https://developers.google.com/terms/">Google Terms of Use</a> &#8226; <a href="https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart">Documentation and Data Policy</a>
+</span></div>
+
+
+
+
     <script src="bower_components/flatstrap-sass/vendor/assets/javascripts/bootstrap.js"></script>	
  <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
  <link href='http://fonts.googleapis.com/css?family=Raleway:400,800,200' rel='stylesheet' type='text/css'>
   </body>
 </html>

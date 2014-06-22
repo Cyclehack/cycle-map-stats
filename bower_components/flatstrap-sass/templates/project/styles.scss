@@ -5,6 +5,7 @@ $heading: 'Raleway', sans-serif;
 $sunflower: #f1c40f;
 $asphalt: #34495e;
 $off-white: #ecf0f1;
+$box-style: rgba(52, 73, 94, 0.7);
 
 														
 
@@ -61,8 +62,16 @@ header {
 
 // what follows is the imported app list-style-position: 
 
+.legend.leaflet-control {
+    display: none !important;
+}
+.lower-data {
+    background: $off-white;
+}
 
-
+#dougnut {
+    background: $box-style;
+}
 
         body, html { height: 100%; }
 
