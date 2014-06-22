@@ -56,9 +56,31 @@ header {
 	opacity: 45%;
 	padding: 10px 0 10px 45px;
     position: absolute;
-    top: 155px;	
+    top: -355px;	
 }
+.slides {
+    text-align: center;
 
+    .hero-unit {
+        background:$off-white;
+        min-height: 500px;
+        padding-top: 300px; 
+    img {
+        min-width: 100%
+        }
+    }
+    .hero-unit.image-slide {
+        padding-top: 150px;
+
+        h1 {
+            padding-bottom: 50px;
+        }
+    }
+
+}
+.container.web {
+    border-top: 3px solid $off-white;
+}
 
 // what follows is the imported app list-style-position: 
 
@@ -67,6 +89,16 @@ header {
 }
 .lower-data {
     background: $off-white;
+    h4 {
+        color: $asphalt;
+    }
+    .explanation {
+        padding: 25px 10px;
+    }
+}
+.donut-wrap {
+    text-align: center;
+    padding: 0 50px;
 }
 
 #dougnut {

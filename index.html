@@ -56,6 +56,7 @@
                     colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', '#FFCC00' ],
                     labels: [ 'Oceania', 'America', 'Europe', 'Africa', 'Asia' ]
                 }
+
             });
 
             function countryClick(country, event) {
@@ -121,7 +122,42 @@
     
   </head>
   <body ng-controller="DemoController">
-<div class="container">
+
+
+<div class=" slides container">
+    
+<div class="hero-unit">
+<h1>1. Barrier</h1>
+<p>Lack of good data.</p>
+
+
+</div>
+
+<div class="hero-unit">
+    
+    <h1>2. The Hack</h1>
+    <p>Big Open data @ A local level</p>
+</div>
+<div class="hero-unit image-slide">
+<h1>3. Scotland != The World</h1>
+    <img src="assets/scotlandcomparisonmap.jpg" alt="Scotland">
+
+    <div class="clearfix"></div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="container web">
 
 <div class="row">
   <header class="span12">
@@ -141,21 +177,38 @@
 
     <leaflet center="center" events="events" legend="legend" geojson="geojson"></leaflet>
     
-    <div class="container">
+    <div class="container" style="position:relative">
         <div class="row">
             <div class="post-cd offset8 span4">
                 <form action=":5000/api/politician/" method="post" class="code">
                 <h3>Enter your postcode.</h3>
-                    <input class="input-medium search-query" name="postcode" placeholder="Enter Your Postcode" type="text">
+                    <input class="input-medium search-query" name="postcode" placeholder="G4 9ss" type="text">
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </div>
         </div>
     </div>
 <div class="container lower-data">
+        <div class="row">
+        <div class="span4 donut-wrap">
+            
+  
+<div id="doughnut"
+  style="width: 300px; height: 300px;">
+</div>
+</div>
+<div class="span6 explanation">
+ <div>
+<!-- htmlFooter -->
+<h4>Data: Maryhill &amp; Springburn</h4> 
+<p>This chart compares the percentage of cycleways in an area compared to the total highway area</p>
+</div>
+            </div>
+
+    </div> <!-- /row -->
     <div class="row">
         
-                    <div class="span6">
+                    <div class="span12">
 
                     <table class="table">
 <thead>
@@ -192,23 +245,13 @@
 
 
         </div>
-        <div class="span6">
-            
-                                <div id="doughnut"
-                      style="width: 500px; height: 500px;">
-                    </div>
-                     <div><span>Data: Kelvin &#8226; Chart ID: <a href="Chart_doughnut.html">doughnut</a> &#8226; <a href="https://github.com/mages/googleVis">googleVis-0.5.2</a></span><br /> 
-                    <!-- htmlFooter -->
-                    <span> 
-                      R version 3.1.0 (2014-04-10) 
-                      &#8226; <a href="https://developers.google.com/terms/">Google Terms of Use</a> &#8226; <a href="https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart">Documentation and Data Policy</a>
-                    </span></div>
+        </div> <!-- / ro w -->
 
-                    </div>
-    </div> <!-- /row -->
 </div>
 
 
+
+                   <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
@@ -236,11 +279,11 @@ function drawChartdoughnut() {
 var data = gvisDatadoughnut();
 var options = {};
 options["allowHtml"] = true;
-options["width"] =    500;
-options["height"] =    500;
+options["width"] =    300;
+options["height"] =    300;
 options["title"] = "Total length of highways vs cycleway";
 options["legend"] = "none";
-options["colors"] = ['black','green',];
+options["colors"] = ['#34495e','#f1c40f',];
 options["pieSliceText"] = "label";
 options["pieHole"] =    0.5;
 
@@ -299,19 +342,15 @@ callbacks.shift()();
 <script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartdoughnut"></script>
  
 <!-- divChart -->
-  
-<div id="doughnut"
-  style="width: 500px; height: 500px;">
+
+<div class="container slides">
+    <div class="hero-unit">
+    <h1>5. Future</h1>
+    <p>MOAR DATA<br />
+    Cross reference with health &amp; Wealth</p>
+
 </div>
- <div><span>Data: Kelvin &#8226; Chart ID: <a href="Chart_doughnut.html">doughnut</a> &#8226; <a href="https://github.com/mages/googleVis">googleVis-0.5.2</a></span><br /> 
-<!-- htmlFooter -->
-<span> 
-  R version 3.1.0 (2014-04-10) 
-  &#8226; <a href="https://developers.google.com/terms/">Google Terms of Use</a> &#8226; <a href="https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart">Documentation and Data Policy</a>
-</span></div>
-
-
-
+</div>
 
     <script src="bower_components/flatstrap-sass/vendor/assets/javascripts/bootstrap.js"></script>	
  <script src="http://code.jquery.com/jquery-latest.js"></script>

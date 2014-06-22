@@ -37,13 +37,37 @@ header {
   opacity: 45%;
   padding: 10px 0 10px 45px;
   position: absolute;
-  top: 155px; }
+  top: -355px; }
+
+.slides {
+  text-align: center; }
+  .slides .hero-unit {
+    background: #ecf0f1;
+    min-height: 500px;
+    padding-top: 300px; }
+    .slides .hero-unit img {
+      min-width: 100%; }
+  .slides .hero-unit.image-slide {
+    padding-top: 150px; }
+    .slides .hero-unit.image-slide h1 {
+      padding-bottom: 50px; }
+
+.container.web {
+  border-top: 3px solid #ecf0f1; }
 
 .legend.leaflet-control {
   display: none !important; }
 
 .lower-data {
   background: #ecf0f1; }
+  .lower-data h4 {
+    color: #34495e; }
+  .lower-data .explanation {
+    padding: 25px 10px; }
+
+.donut-wrap {
+  text-align: center;
+  padding: 0 50px; }
 
 #dougnut {
   background: rgba(52, 73, 94, 0.7); }
