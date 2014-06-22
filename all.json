@@ -1,0 +1,22 @@
+{
+  "constituency": "Glasgow Maryhill and Springburn",
+  "politician": {
+    "left_reason": "still_in_office",
+    "first_name": "Patricia",
+    "last_name": "Ferguson",
+    "left_house": "9999-12-31",
+    "title": "",
+    "house": "4",
+    "image": "\/images\/mpsL\/13984.png",
+    "lastupdate": "2011-05-06 20:00:09",
+    "image_width": 98,
+    "person_id": "13984",
+    "entered_reason": "regional_election",
+    "image_height": 118,
+    "full_name": "Patricia Ferguson",
+    "member_id": "80422",
+    "entered_house": "2011-05-06",
+    "party": "Labour",
+    "constituency": "Glasgow Maryhill and Springburn"
+  }
+}

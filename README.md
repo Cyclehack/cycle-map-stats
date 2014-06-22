@@ -20,3 +20,10 @@ Further metrics relevant to cycle infrastructure can be built as more detail is 
 
 (*) at the moment this defaults to Scottish Parliamentary constituency, but there is scope in future releases to add other levels of political power e.g. Ward, Council, UK Parliament and European Parliament.
 
+<<<<<<< HEAD
+=======
+A mapping app to show cycle infrastructure in the users local area, and cycle-infrastructure health.
+
+- python api.py to run REST API, which accepts a postcode and returns local politician and area information.
+	format: /api/politician/<string:postcode>
+>>>>>>> 2fab471060ae2bc6125bdd7b9890f2e2bf156e50

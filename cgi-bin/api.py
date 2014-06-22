@@ -2,7 +2,7 @@ import requests, json
 from flask import Flask
 app = Flask(__name__)
 
-@app.route("/api/politician/<string:postcode>")
+@app.route("/api/politician/?postcode=<string:postcode>")
 def get_politician(postcode):
 	api_key = 'GyHsCnCyb9szFm2q9MBZTA2j'
 	error = 'error'

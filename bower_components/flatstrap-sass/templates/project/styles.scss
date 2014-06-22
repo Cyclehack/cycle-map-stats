@@ -1,6 +1,123 @@
 // I gather this file is a starting point for the project.
-@import "flatstrap";
 
-// Include responsive Bootstrap styles
-// @import "flatstrap-responsive";
+$heading: 'Raleway', sans-serif;
+// here be colours 
+$sunflower: #f1c40f;
+$asphalt: #34495e;
+$off-white: #ecf0f1;
+$box-style: rgba(52, 73, 94, 0.7);
 
+														
+
+body {
+	background:$asphalt;
+	font-family: $heading;
+}
+h1, h2, h3, h4 {
+	font-family: $heading;
+	font-weight: 800;
+	color: $off-white;
+}
+header {
+	padding: 1em 0;
+}
+.brand {
+	text-transform: uppercase;
+	font-size: 4em;
+	color: $sunflower;
+	float: left;
+	display: inline-block;
+		.topline {
+			letter-spacing: 2px;
+		}																																																					
+	.num-3 {
+		position: relative;
+		top: -8px;
+	}
+	.hyphen {
+		position: relative;
+		top: -4px;
+	}
+}
+.strap {
+	font-weight: 200;
+	float: right;
+	display: inline-block;
+	position: relative;
+    top: 17px;
+}
+
+#map-wrapper {
+
+}
+
+.post-cd {
+	background: rgba(52, 73, 94, 0.7);
+	opacity: 45%;
+	padding: 10px 0 10px 45px;
+    position: absolute;
+    top: 155px;	
+}
+
+
+// what follows is the imported app list-style-position: 
+
+.legend.leaflet-control {
+    display: none !important;
+}
+.lower-data {
+    background: $off-white;
+}
+
+#dougnut {
+    background: $box-style;
+}
+
+        body, html { height: 100%; }
+
+        .info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+        }
+
+        .legend {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            font-weight: bold;
+            line-height: 18px;
+            color: #555;
+        }
+
+        .legend i {
+            clear: both;
+            width: 16px;
+            height: 16px;
+            float: left;
+            opacity: 0.7;
+            margin-right: 8px;
+        }
+
+        div.box {
+            position: absolute;
+            bottom: 1em;
+            right: 1em;
+            z-index: 100;
+            padding: 1em;
+            text-align: center;
+        }
+
+        div.country {
+            font-size: 2em;
+            font-weight: bold;
+            position: absolute;
+            bottom: 1em;
+            left: 1em;
+            z-index: 100;
+            padding: .2em .5em;
+            line-height: 1.1em;
+            text-align: center;
+        }
+    
