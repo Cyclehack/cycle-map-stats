@@ -107,6 +107,8 @@ header {
 
 footer {
   padding-bottom: 38px; }
+  footer .alert {
+    margin-top: 25px; }
   footer .foot-strap {
     font-weight: bold;
     font-weight: 200;
