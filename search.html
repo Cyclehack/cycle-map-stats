@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>search</title>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="js/main.js"></script>
+</head>
+<body>
+
+       <div ng-controller="searchCtrl" class="post-cd offset8 span4">
+                <form class="code">
+                <h3>Enter your postcode.</h3>
+                    <input ng-model="postcode" class="input-medium search-query" placeholder="G4 9ss" type="text">
+                    <button ng-click="search()" class="btn btn-primary">Search</button>
+                </form>
+
+                <pre ng-show="searchResult">
+               {{ callback.lat }}
+
+                </pre>
+            </div>
+	
+</body>
+</html>

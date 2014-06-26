@@ -3,11 +3,10 @@
   <head>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/leaflet/dist/leaflet.js"></script>
-    <script src="js/angular-leaflet-directive.min.js"></script>
+    <script src="angular-leaflet-directive/dist/angular-leaflet-directive.min.js"></script>
     <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="bower_components/flatstrap-sass/vendor/assets/stylesheets/flatstrap.css">
     <link rel="stylesheet" href="bower_components/flatstrap-sass/templates/project/styles.css">
-   
     <script>
         var app = angular.module("demoapp", ["leaflet-directive"]);
         app.controller('DemoController', [ "$scope", "$http", function($scope, $http) {
@@ -15,31 +14,35 @@
 
 
             $scope.$on("leafletDirectiveMap.geojsonMouseover", function(ev, leafletEvent) {
-                countyMouseover(leafletEvent);
+                countryMouseover(leafletEvent);
             });
 
             $scope.$on("leafletDirectiveMap.geojsonClick", function(ev, featureSelected, leafletEvent) {
-                countyClick(featureSelected, leafletEvent);
+                countryClick(featureSelected, leafletEvent);
             });
 
-
-              $scope.mainInfo = [];
-                      $http.get('data/response.json').success(function(data) {
-                          // you can do some processing here
-                          
-                          $scope.mainInfo = data;
-                            angular.extend($scope, {
-                        geojson: {
-                            data: $scope.mainInfo.outline,
-                            style: style,
-                            resetStyleOnMouseout: true
-                            
-                        }
-                    });
-
-                      });   
-                  
-                  
+            var constituencyProperties= {
+                    "009": {
+                            name: '',
+                            colors: [ '#CC0066', '#993366', '#990066', '#CC3399', '#CC6699' ]
+                    },
+                    "019": {
+                            name: 'America',
+                            colors: [ '#006699', '#336666', '#003366', '#3399CC', '#6699CC' ]
+                    },
+                    "150": {
+                            name: 'Europe',
+                            colors: [ '#FF0000', '#CC3333', '#990000', '#FF3333', '#FF6666' ]
+                    },
+                    "002": {
+                            name: 'Africa',
+                            colors: [ '#00CC00', '#339933', '#009900', '#33FF33', '#66FF66' ]
+                    },
+                    "142": {
+                            name: 'Asia',
+                            colors: [ '#FFCC00', '#CC9933', '#999900', '#FFCC33', '#FFCC66' ]
+                    },
+            };
 
             angular.extend($scope, {
                 center: {
@@ -47,34 +50,31 @@
                     lng: -4.257436,
                     zoom: 12
                 },
-                layers: {
-            baselayers: {
-                 cycle: {
-                      name: 'OpenCycleMap',
-                      type: 'xyz',
-                      url: 'http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
-                      layerOptions: {
-                          subdomains: ['a', 'b', 'c'],
-                          attribution: '© OpenCycleMap contributors - © OpenStreetMap contributors',
-                          continuousWorld: true
-                      }
-                  },
-                osm: {
-                    name: 'OpenStreetMap',
-                    url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    type: 'xyz'
+                legend: {
+                    colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', '#FFCC00' ],
+                    labels: [ 'Oceania', 'America', 'Europe', 'Africa', 'Asia' ]
                 }
-                
-            }
-        },
-                        
-                
-            }); // .extend
 
+            });
+
+            function countryClick(country, event) {
+                console.log(country.properties.name);
+            }
+
+            // Get a country paint color from the continents array of colors
+            function getColor(country) {
+                if (!country || !country["region-code"]) {
+                    return "#f1c40f";
+                }
+
+                var colors = continentProperties[country["region-code"]].colors;
+                var index = county["constituency"].charCodeAt(0) % colors.length ;
+                return colors[index];
+            }
 
             function style(feature) {
                 return {
-                    fillColor: "#f1c40f",
+                    fillColor: getColor($scope.counties[feature.id]),
                     weight: 2,
                     opacity: 1,
                     color: 'white',
@@ -89,62 +89,38 @@
                 layer.setStyle({
                     weight: 2,
                     color: '#666',
-                    fillOpacity: 0.2,
-                   
+                    fillColor: 'white'
                 });
                 layer.bringToFront();
             }
 
             // Get the countries data from a JSON
-           // $http.get("all.json").success(function(data, status) {  -------- BELOW
+            $http.get("all.json").success(function(data, status) {
 
                // Put the countries on an associative array
-                // $scope.counties = {};
-                // for (var i=0; i< data.length; i++) {
-                //     var country = data[i];
-                //     $scope.counties[county['constituency']] = county;
-                // }
-
+                $scope.counties = {};
+                for (var i=0; i< data.length; i++) {
+                    var country = data[i];
+                    $scope.counties[county['constituency']] = county;
+                }
+                var mainInfo = null;
                 // Get the counties geojson data from a JSON
+                $http.get("data/response.json").success(function(data, status) {
+                    angular.extend($scope, {
+                      mainInfo = data;
+                        geojson: {
+                            data: mainInfo.outline,
+                            style: style,
+                            resetStyleOnMouseout: true
+                        }
 
-                     
-      // Failed attemp @ Ngresource
-                    // function getInfo($scope, $resource) {
-                    
-                    //   $scope.mainInfo = $resource("data/response.json",
-                    //   { get: { method: "JSON"}});
-                    //     $scope.geoData = $scope.mainInfo.get;
-
-                    //   function draw()
-                    //     angular.extend($scope, {
-                    //       geojson: {
-                    //         data: $scope.geoData.outline
-                    //       }
-                    //     })
-
-
-                    // }
-
-//function getInfo($scope) {
-         
-                  
-    //  };
-           
-
-
-              
-                // $http.get("data/response.json").success(function(data, status) {
-                //     angular.extend($scope, {
-                //         geojson: {
-                //             data: data,
-                //             style: style,
-                //             resetStyleOnMouseout: true
-                //         }
-                //     });
-                // });
-           // });  
+                    });
+                });
+                return mainInfo;
+            });
         }]);
     </script>
+    
     
   </head>
   <body ng-controller="DemoController">
@@ -153,7 +129,7 @@
 
 <div class="row">
   <header class="span12">
-      <h1 class="brand"> <span class="topline">V<span class="num-3">3</span>lo<span class="hyphen">-</span></span><br /><span class="bottom-line">scape</span></h1>
+      <h1 class="brand"> <span class="topline">V<span class="num-3">3</span>lo<span class="hyphen">_</span></span><br /><span class="bottom-line">scape</span></h1>
       <h2 class="strap">Sculpt the future of cycling in your area.</h2>
   </header>
   </div> <!-- /row-fluid -->
@@ -167,18 +143,11 @@
 
     
 
-    <leaflet center="center" markers="markers" layers="layers" events="events" geojson="geojson"></leaflet>
-    
+    <leaflet center="center" events="events" geojson="geojson"></leaflet>
     
     <div class="container" style="position:relative">
         <div class="row">
-          <div class="map-heading span4">
-        <h2>{{ mainInfo.constituency}}</h2>
-      </div>
-        </div>
-        <div class="row">
-        
-            <div style="display:none;" class="post-cd offset8 span4">
+            <div class="post-cd offset8 span4">
                 <form class="code">
                 <h3>Enter your postcode.</h3>
                     <input class="input-medium search-query" placeholder="G4 9ss" type="text">
@@ -195,31 +164,15 @@
 <div id="doughnut"
   style="width: 300px; height: 300px;">
 </div>
-<p><small>This chart compares the percentage of cycleways in an area compared to the total highway area</small></p>
-</div> <!-- // donut-wrap -->
+</div>
 <div class="span6 explanation">
  <div>
 <!-- htmlFooter -->
-<h4>Constituency: {{ mainInfo.constituency}}</h4> 
-
-
-
-
-
-<div class="row">
-  <div class="span3">
-   <p><span class="label">MSP: </span> {{ mainInfo.politician.full_name }}</p>
-<p><span class="label">Party:</span> {{ mainInfo.politician.party }}</p>
-<p><span class="label">Entered Office:</span> {{ mainInfo.politician.entered_house}}</p>
-  </div> <!-- /span3 -->
-  <div class="img-wrap  span3">
-    <img src="http://www.theyworkforyou.com{{ mainInfo.politician.image}}" alt="Picture of {{ mainInfo.politician.full_name }}">
-
-  </div> <!-- /span3 --> 
-</div><!-- row -->
-
-
-
+<h4>Data: Maryhill &amp; Springburn</h4> 
+<p>This chart compares the percentage of cycleways in an area compared to the total highway area</p>
+<pre >
+{{ mainInfo.politician.first_name }}
+ </pre>
 </div>
             </div>
 
@@ -228,52 +181,43 @@
 
         
                     <div class="span12">
-<h3>Cycle Health Stats:</h3>
-</div>
-</div> <!-- /row -->
-<div class="row hud"> 
-<div class="stat-block span3">
-  <div class="title">NCN total length</div>
-  <div class="stat">7.7 km</div>
 
-</div>
-<div class="stat-block span3 offset1">
-  <div class="title">NCN proposed</div>
-  <div class="stat">0 km</div>
-</div>
-<div class="stat-block span3 offset1">
-  <div class="title">Total MTB only cycleway</div>
-  <div class="stat">5.52</div>
-</div>
-</div> <!-- /hud -->
-<div class="row hud">
-  <div class="stat-block span3">
-    <div class="title">NCN current length</div>
-    <div class="stat">7.7 km</div>
-  </div>
-  <div class="stat-block span3 offset1">
-    <div class="title">Length Cyclepath within NCN</div>
-    <div class="stat">7.6 km</div>
-  </div>
-  <div class="stat-block span3 offset1">
-    <div class="title">Percentage of NCN Cyclepath</div>
-    <div class="stat">98.7 %</div>
-  </div>
-</div> <!-- /row -->
-<div class="hud row">
-  <div class="stat-block span3">
-    <div class="title">Total Highway (roads and paths)</div>
-    <div class="stat">404.8 km</div>
-  </div>
-  <div class="stat-block span3 offset1">
-    <div class="title">Total cycleway (in or out of NCN network)</div>
-    <div class="stat">15.3</div>
-  </div>
-  <div class="stat-block span3 offset1">
-    <div class="title">Current NCN Vs total highway length</div>
-    <div class="stat">0.01902</div>
-  </div>
-</div>
+                    <table class="table">
+<thead>
+        <tr>
+                      <th class="header">Name</th>
+                      <th class="header">NCN total length km</th>
+                      <th class="header">NCN proposed km</th>
+                      <th class="header">NCN current length km</th>
+                      <th class="header">Number of OSM Contributors</th>
+                      <th class="header">Length Cyclepath within NCN km</th>
+                      <th class="header">Percentage of NCN Cyclepath</th>
+                      <th class="header">Total Highway (roads and paths)</th>
+                      <th class="header">Total cycleway (in or out of NCN network)</th>
+                      <th class="header">Current NCN Vs total highway length</th>
+                      <th class="header">Total MTB only cycleway</th>
+                  </tr>
+      </thead>
+      <tbody>
+<tr>
+                      <td>Glasgow Maryhill and Springburn P Const</td>
+                      <td>7.7</td>
+                      <td>0</td>
+                      <td>7.7</td>
+                      <td>2</td>
+                      <td>7.6</td>
+                      <td>98.7</td>
+                      <td>404.8</td>
+                      <td>15.3</td>
+                      <td>0.01902</td>
+                      <td>5.52</td>
+                  </tr>
+                  </tbody>
+                  </table>
+
+
+        </div>
+        </div> <!-- / ro w -->
 
 </div>
 

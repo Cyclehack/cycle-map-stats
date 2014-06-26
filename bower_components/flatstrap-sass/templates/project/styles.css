@@ -23,7 +23,9 @@ header {
     top: -8px; }
   .brand .hyphen {
     position: relative;
-    top: -4px; }
+    font-size: 82px;
+    left: -6px;
+    top: 3px; }
 
 .strap {
   font-weight: 200;
@@ -39,6 +41,12 @@ header {
   position: absolute;
   top: -355px; }
 
+.map-heading {
+  background: none repeat scroll 0 0 rgba(52, 73, 94, 0.698);
+  padding: 10px 0 10px 45px;
+  top: -121px;
+  position: absolute; }
+
 .slides {
   text-align: center; }
   .slides .hero-unit {
@@ -52,22 +60,47 @@ header {
     .slides .hero-unit.image-slide h1 {
       padding-bottom: 50px; }
 
-.container.web {
-  border-top: 3px solid #ecf0f1; }
-
 .legend.leaflet-control {
   display: none !important; }
 
 .lower-data {
-  background: #ecf0f1; }
-  .lower-data h4 {
+  background: #ecf0f1;
+  padding: 0 45px; }
+  .lower-data h1, .lower-data h2, .lower-data h3, .lower-data h4 {
     color: #34495e; }
   .lower-data .explanation {
     padding: 25px 10px; }
+    .lower-data .explanation h4 {
+      padding-bottom: 1em; }
+  .lower-data .img-wrap {
+    text-align: center; }
+
+.hud {
+  margin-bottom: 2em;
+  padding-left: 3em; }
+  .hud .stat-block {
+    background: #fff;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 14px 17px 13px -8px; }
+    .hud .stat-block .title {
+      background: #3498db;
+      color: #ecf0f1;
+      padding: 15px 8px;
+      border-radius: 20px 20px 0 0; }
+    .hud .stat-block .stat {
+      padding: 45px 25px;
+      font-size: 22px; }
+
+.hud > .stat-block:first-child > .title {
+  background: #2ecc71; }
+
+.hud > .stat-block:last-child > .title {
+  background: #e74c3c; }
 
 .donut-wrap {
   text-align: center;
-  padding: 0 50px; }
+  padding: 0 45px; }
 
 #dougnut {
   background: rgba(52, 73, 94, 0.7); }

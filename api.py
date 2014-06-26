@@ -33,7 +33,8 @@ def get_politician(postcode):
 	if error in politician:
 		return 'theyworkforyou api query failed with error: %s' % politican[error]
 	response['politician'] = politician[0]
-	return json.dumps(response)
+	d = json.dumps(response)
+	return 'callback(' + d + ');'
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
