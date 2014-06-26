@@ -155,6 +155,33 @@ header {
 #dougnut {
     background: $box-style;
 }
+footer {
+    padding-bottom: 38px;
+.foot-strap {
+            font-weight: bold;
+            font-weight: 200;
+            top: 8px;
+            position: relative;
+            text-align: center;
+        }
+   
+   .cycle-hack {
+      padding-top: 17px;
+        
+    }   
+    .credits {
+        padding-top: 25px;
+        .foot-strap {
+            top: 0;
+        }
+        .label {
+            margin-right: 35px;
+            width: 80px;
+        }
+    
+    }
+}
+
 
         body, html { height: 100%; }
 

@@ -105,6 +105,24 @@ header {
 #dougnut {
   background: rgba(52, 73, 94, 0.7); }
 
+footer {
+  padding-bottom: 38px; }
+  footer .foot-strap {
+    font-weight: bold;
+    font-weight: 200;
+    top: 8px;
+    position: relative;
+    text-align: center; }
+  footer .cycle-hack {
+    padding-top: 17px; }
+  footer .credits {
+    padding-top: 25px; }
+    footer .credits .foot-strap {
+      top: 0; }
+    footer .credits .label {
+      margin-right: 35px;
+      width: 80px; }
+
 body, html {
   height: 100%; }
 
