@@ -1,15 +1,31 @@
 import requests, json
-from flask import Flask
+from functools import wraps
+from flask import Flask, request, current_app
 app = Flask(__name__)
 
+def jsonp(func):
+    """Wraps JSONified output for JSONP requests."""
+    @wraps(func)
+    def decorated_function(*args, **kwargs):
+        callback = request.args.get('callback', False)
+        if callback:
+            content = str(callback) + '(' + str(func(*args,**kwargs)) + ')'
+            print callback
+            print content
+            mimetype = 'application/javascript'
+            return current_app.response_class(content, mimetype=mimetype)
+        else:
+            return func(*args, **kwargs)
+    return decorated_function
+
 @app.route("/api/politician/<string:postcode>")
+@jsonp
 def get_politician(postcode):
 	api_key = 'GyHsCnCyb9szFm2q9MBZTA2j'
 	error = 'error'
 	response = {}
 	r = requests.get('http://mapit.mysociety.org/postcode/' + postcode)
 	location = r.json()
-	print location
 	if error in location:
 		return 'postcode not valid with error: %s' % location[error]
 	response['lat'] = location['wgs84_lat']
@@ -34,7 +50,7 @@ def get_politician(postcode):
 		return 'theyworkforyou api query failed with error: %s' % politican[error]
 	response['politician'] = politician[0]
 	d = json.dumps(response)
-	return 'callback(' + d + ');'
+	return d
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
